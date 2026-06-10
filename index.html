@@ -1,0 +1,279 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Signika:wght@400;700&display=swap');
+  *{box-sizing:border-box;margin:0;padding:0;}
+  #bday{font-family:'Signika',sans-serif;background:#111;min-height:520px;overflow:hidden;position:relative;transition:background 4s linear;}
+  #bday.peach{background:#92e0ff;}
+  #bday.peach2{background:#FFE4B5;}
+
+  .bulbs-row{display:flex;justify-content:center;gap:32px;padding:18px 0 10px;}
+  .bulb{display:flex;flex-direction:column;align-items:center;}
+  .bulb-glass{width:26px;height:34px;border-radius:50% 50% 38% 38%;background:#2a2a2a;transition:background 0.4s,box-shadow 0.4s;}
+  .bulb-base{width:12px;height:8px;background:#555;border-radius:0 0 3px 3px;margin-top:2px;}
+  .bulb.y .bulb-glass{background:yellowgreen;box-shadow:0 0 14px 5px rgb(131, 175, 43);}
+  .bulb.r .bulb-glass{background:orangered;box-shadow:0 0 14px 5px rgb(199, 53, 0);}
+  .bulb.b .bulb-glass{background:aqua;box-shadow:0 0 14px 5px rgb(0, 194, 194);}
+  .bulb.g .bulb-glass{background:seashell;box-shadow:0 0 14px 5px rgb(218, 208, 202);}
+  .bulb.p .bulb-glass{background:coral;box-shadow:0 0 14px 5px rgb(207, 103, 65);}
+  .bulb.o .bulb-glass{background:seagreen;box-shadow:0 0 14px 5px rgb(33, 100, 62);}
+  .bulb.blink{animation:blinkBulb 1s ease-in-out infinite;}
+  @keyframes blinkBulb{0%,100%{opacity:0.25}50%{opacity:1}}
+
+  .banner-wrap{text-align:center;padding:10px 0 4px;overflow:hidden;height:60px;}
+  .banner-inner{transform:translateY(-80px);transition:transform 1.2s cubic-bezier(.23,1.4,.5,1);}
+  .banner-inner.show{transform:translateY(0);}
+  .banner-inner h1{font-size:2rem;font-weight:700;letter-spacing:3px;color:#FF4040;}
+  .banner-inner h1 span{display:inline-block;}
+  .banner-inner h1 .b1{color:#FF4040;}.banner-inner h1 .b2{color:#FFD700;}
+  .banner-inner h1 .b3{color:#44CC44;}.banner-inner h1 .b4{color:#4488FF;}
+  .banner-inner h1 .b5{color:#FF69B4;}.banner-inner h1 .b6{color:#FF8C00;}
+  .banner-inner h1 .b7{color:#9B59B6;}.banner-inner h1 .b8{color:#FF4040;}
+  .banner-inner h1 .b9{color:#FFD700;}.banner-inner h1 .b10{color:#44CC44;}
+  .banner-inner h1 .b11{color:#4488FF;}.banner-inner h1 .b12{color:#FF69B4;}
+  .banner-inner h1 .b13{color:#FF8C00;}.banner-inner h1 .bm{color:orangered;}
+
+  .balloons-area{position:relative;height:180px;overflow:hidden;}
+  .bal{position:absolute;bottom:-160px;display:flex;flex-direction:column;align-items:center;transition:bottom 1.8s ease-out;width:60px;}
+  .bal svg{width:60px;height:100px;display:block;}
+  .bal .bstring{width:1px;height:30px;background:#aaa;margin:0 auto;}
+  .bal .bletter{font-size:22px;font-weight:700;color:#fff;text-align:center;margin-top:-106px;position:relative;z-index:2;text-shadow:0 1px 4px rgba(0,0,0,0.4);display:none;}
+  .bal.up{bottom:20px;}
+  .bal.float1{animation:sway1 9s ease-in-out infinite;}
+  .bal.float2{animation:sway2 11s ease-in-out infinite;}
+  @keyframes sway1{0%,100%{transform:rotate(10deg)}50%{transform:rotate(-10deg)}}
+  @keyframes sway2{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(8deg)}}
+
+  .wish-row{display:none;flex-direction:row;justify-content:center;align-items:flex-end;gap:6px;padding:10px 0;flex-wrap:nowrap;}
+  .wbal{display:flex;flex-direction:column;align-items:center;}
+  .wbal svg{width:50px;height:80px;display:block;}
+  .wbal .wstring{width:1px;height:24px;background:#aaa;margin:0 auto;}
+  .wbal .wletter{font-size:18px;font-weight:700;text-align:center;margin-top:-86px;position:relative;z-index:2;text-shadow:0 1px 3px rgba(0,0,0,0.4);}
+
+  .cake-section{display:flex;justify-content:center;padding:10px 0 0;min-height:200px;}
+  .cake{display:none;position:relative;width:180px;height:180px;}
+  .ck-base{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:120px;height:60px;background:#6d3826;border-radius:3px 3px 8px 8px;}
+  .ck-base::after{content:'';position:absolute;top:30%;left:0;width:100%;height:9px;background:rgba(236,231,227,0.65);}
+  .ck-base::before{content:'';position:absolute;top:62%;left:0;width:100%;height:9px;background:rgba(236,231,227,0.65);}
+  .ck-frost{position:absolute;bottom:58px;left:50%;transform:translateX(-50%);width:130px;height:20px;background:#ece7e3;border-radius:30px;z-index:3;}
+  .ck-candle{position:absolute;bottom:78px;left:50%;transform:translateX(-50%);width:12px;height:36px;background:#fff;border-radius:2px;z-index:4;}
+  .ck-candle::after{content:'';position:absolute;top:28%;left:0;width:100%;height:5px;background:rgba(255,0,0,0.35);}
+  .ck-candle::before{content:'';position:absolute;top:58%;left:0;width:100%;height:5px;background:rgba(255,0,0,0.35);}
+  .ck-flame{display:none;position:absolute;bottom:114px;left:50%;transform:translateX(-50%);width:14px;height:22px;border-radius:50% 50% 30% 30%;background:#ffe866;z-index:5;animation:flicker 0.35s ease-in-out infinite alternate;}
+  @keyframes flicker{0%{transform:translateX(-50%) scaleX(1) scaleY(1);background:#ffe866;}100%{transform:translateX(-50%) scaleX(0.7) scaleY(0.8);background:#ff8800;}}
+
+  .msg-section{display:none;text-align:center;padding:24px 20px 20px;}
+  .msg-line{display:none;font-size:1.5rem;font-weight:700;text-transform:uppercase;color:#c4515c;text-shadow:1px 1px 2px rgba(255,255,255,0.8);padding:3px 0;animation:fadeUp 0.5s ease forwards;}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+
+  .ctrls{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;padding:12px 16px 16px;background:rgba(0,0,0,0.6);}
+  .btn{background:#466baf;color:#fff;border:none;border-radius:6px;padding:8px 13px;font-family:'Signika',sans-serif;font-size:0.75rem;font-weight:700;text-transform:uppercase;cursor:pointer;letter-spacing:0.4px;transition:background 0.2s,transform 0.1s;}
+  .btn:hover{background:#3558a0;}
+  .btn:active{transform:scale(0.97);}
+  .btn.hide{display:none;}
+</style>
+
+<div id="bday">
+  <div class="bulbs-row">
+    <div class="bulb" id="by"><div class="bulb-glass"></div><div class="bulb-base"></div></div>
+    <div class="bulb" id="br"><div class="bulb-glass"></div><div class="bulb-base"></div></div>
+    <div class="bulb" id="bb"><div class="bulb-glass"></div><div class="bulb-base"></div></div>
+    <div class="bulb" id="bg"><div class="bulb-glass"></div><div class="bulb-base"></div></div>
+    <div class="bulb" id="bp"><div class="bulb-glass"></div><div class="bulb-base"></div></div>
+    <div class="bulb" id="bo"><div class="bulb-glass"></div><div class="bulb-base"></div></div>
+  </div>
+
+  <div class="banner-wrap">
+    <div class="banner-inner" id="banner">
+      <h1>
+        <span class="b1">H</span><span class="b2">A</span><span class="b3">P</span><span class="b4">P</span><span class="b5">Y</span>&nbsp;
+        <span class="b6">B</span><span class="b7">I</span><span class="b8">R</span><span class="b9">T</span><span class="b10">H</span><span class="b11">D</span><span class="b12">A</span><span class="b13">Y</span>&nbsp;<span class="bm">M</span><span class="bm">I</span><span class="bm">L</span><span class="bm">Y</span>
+      </h1>
+    </div>
+  </div>
+
+  <div class="balloons-area" id="balArea">
+    <div class="bal float1" id="ba0" style="left:4%"><svg viewBox="0 0 60 100"><ellipse cx="30" cy="46" rx="26" ry="34" fill="#FF4040"/><line x1="30" y1="80" x2="30" y2="100" stroke="#aaa" stroke-width="1.2"/></svg><div class="bstring"></div><div class="bletter" style="color:lightpink">M</div></div>
+    <div class="bal float2" id="ba1" style="left:17%"><svg viewBox="0 0 60 100"><ellipse cx="30" cy="46" rx="26" ry="34" fill="#FFD700"/><line x1="30" y1="80" x2="30" y2="100" stroke="#aaa" stroke-width="1.2"/></svg><div class="bstring"></div><div class="bletter" style="color:#FFD700">A</div></div>
+    <div class="bal float1" id="ba2" style="left:30%"><svg viewBox="0 0 60 100"><ellipse cx="30" cy="46" rx="26" ry="34" fill="#44CC44"/><line x1="30" y1="80" x2="30" y2="100" stroke="#aaa" stroke-width="1.2"/></svg><div class="bstring"></div><div class="bletter" style="color:#44CC44">L</div></div>
+    <div class="bal float2" id="ba3" style="left:43%"><svg viewBox="0 0 60 100"><ellipse cx="30" cy="46" rx="26" ry="34" fill="#4488FF"/><line x1="30" y1="80" x2="30" y2="100" stroke="#aaa" stroke-width="1.2"/></svg><div class="bstring"></div><div class="bletter" style="color:#4488FF">I</div></div>
+    <div class="bal float1" id="ba4" style="left:56%"><svg viewBox="0 0 60 100"><ellipse cx="30" cy="46" rx="26" ry="34" fill="#FF69B4"/><line x1="30" y1="80" x2="30" y2="100" stroke="#aaa" stroke-width="1.2"/></svg><div class="bstring"></div><div class="bletter" style="color:#FF69B4">H</div></div>
+    <div class="bal float2" id="ba5" style="left:69%"><svg viewBox="0 0 60 100"><ellipse cx="30" cy="46" rx="26" ry="34" fill="#FF8C00"/><line x1="30" y1="80" x2="30" y2="100" stroke="#aaa" stroke-width="1.2"/></svg><div class="bstring"></div><div class="bletter" style="color:#FF8C00">A</div></div>
+    <div class="bal float1" id="ba6" style="left:82%"><svg viewBox="0 0 60 100"><ellipse cx="30" cy="46" rx="26" ry="34" fill="#9B59B6"/><line x1="30" y1="80" x2="30" y2="100" stroke="#aaa" stroke-width="1.2"/></svg><div class="bstring"></div><div class="bletter" style="color:#9B59B6">*</div></div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+                  <!--lok er code e uki mara bad deeeee--> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="wish-row" id="wishRow">
+    <div class="wbal"><svg viewBox="0 0 50 80"><ellipse cx="25" cy="38" rx="21" ry="28" fill="#FF4040"/><line x1="25" y1="66" x2="25" y2="80" stroke="#aaa" stroke-width="1"/></svg><div class="wstring"></div><div class="wletter" style="color:#FF4040">H</div></div>
+    <div class="wbal"><svg viewBox="0 0 50 80"><ellipse cx="25" cy="38" rx="21" ry="28" fill="#FFD700"/><line x1="25" y1="66" x2="25" y2="80" stroke="#aaa" stroke-width="1"/></svg><div class="wstring"></div><div class="wletter" style="color:#FFD700">A</div></div>
+    <div class="wbal"><svg viewBox="0 0 50 80"><ellipse cx="25" cy="38" rx="21" ry="28" fill="#44CC44"/><line x1="25" y1="66" x2="25" y2="80" stroke="#aaa" stroke-width="1"/></svg><div class="wstring"></div><div class="wletter" style="color:#44CC44">P</div></div>
+    <div class="wbal"><svg viewBox="0 0 50 80"><ellipse cx="25" cy="38" rx="21" ry="28" fill="#4488FF"/><line x1="25" y1="66" x2="25" y2="80" stroke="#aaa" stroke-width="1"/></svg><div class="wstring"></div><div class="wletter" style="color:#4488FF">P</div></div>
+    <div class="wbal"><svg viewBox="0 0 50 80"><ellipse cx="25" cy="38" rx="21" ry="28" fill="#FF69B4"/><line x1="25" y1="66" x2="25" y2="80" stroke="#aaa" stroke-width="1"/></svg><div class="wstring"></div><div class="wletter" style="color:#FF69B4">Y</div></div>
+    <div class="wbal"><svg viewBox="0 0 50 80"><ellipse cx="25" cy="38" rx="21" ry="28" fill="#FF8C00"/><line x1="25" y1="66" x2="25" y2="80" stroke="#aaa" stroke-width="1"/></svg><div class="wstring"></div><div class="wletter" style="color:#FF8C00">!</div></div>
+  </div>
+
+  <div class="cake-section">
+    <div class="cake" id="cake">
+      <div class="ck-flame" id="flame"></div>
+      <div class="ck-candle"></div>
+      <div class="ck-frost"></div>
+      <div class="ck-base"></div>
+    </div>
+  </div>
+
+  <div class="msg-section" id="msgSec">
+    <div class="msg-line" id="m0">It's the birthday of my bst twin...</div>
+    <div class="msg-line" id="m1">Happy birthday Mily, finally you're 15!</div>
+    <div class="msg-line" id="m2">Tomar sathe beshi din er porichoi nah</div>
+    <div class="msg-line" id="m3">But u became so close to me in this short preiod</div>
+    <div class="msg-line" id="m4">idk what more to say, but i created this for u!!</div>
+    <div class="msg-line" id="m5">how was it? lmk asap! i have some presents for u...</div>
+    <div class="msg-line" id="m6">but idk kemne dibo 🥀🥀. jai hok...</div>
+    <div class="msg-line" id="m7">May all your wishes come true, always be happy</div>
+    <div class="msg-line" id="m8">it's a very speacial day for u! Keep your spirit up</div>
+    <div class="msg-line" id="m9">Enjoy every single moment, i'm always here for you</div>
+    <div class="msg-line" id="m10">Fill it with your most beautiful smile & girgiti chok</div>
+    <div class="msg-line" id="m11">loveeeee youuuuuu twinnnnn!! Happy Birthday to you! 🫶🏾</div>
+  </div>
+
+  <div class="ctrls">
+    <button class="btn" id="btn1">Turn On Lights</button>
+    <button class="btn hide" id="btn2">Let's Decorate</button>
+    <button class="btn hide" id="btn3">Fly With Balloons</button>
+    <button class="btn hide" id="btn4">Bring the Cake</button>
+    <button class="btn hide" id="btn5">Light the Candle</button>
+    <button class="btn hide" id="btn6">Happy Birthday!</button>
+    <button class="btn hide" id="btn7">A Message For You</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  var root=document.getElementById('bday');
+  var bulbs=[
+    {el:document.getElementById('by'),on:'y'},
+    {el:document.getElementById('br'),on:'r'},
+    {el:document.getElementById('bb'),on:'b'},
+    {el:document.getElementById('bg'),on:'g'},
+    {el:document.getElementById('bp'),on:'p'},
+    {el:document.getElementById('bo'),on:'o'},
+  ];
+
+  function show(id){document.getElementById(id).classList.remove('hide');}
+  function hide(id){document.getElementById(id).classList.add('hide');}
+
+  document.getElementById('btn1').onclick=function(){
+    hide('btn1');
+    bulbs.forEach(function(b){b.el.classList.add(b.on);});
+    root.classList.add('peach');
+    setTimeout(function(){
+      bulbs.forEach(function(b){b.el.classList.add('blink');});
+      show('btn2');
+    },3500);
+  };
+
+  document.getElementById('btn2').onclick=function(){
+    hide('btn2');
+    document.getElementById('banner').classList.add('show');
+    setTimeout(function(){show('btn3');},1400);
+  };
+
+  var balEls=[0,1,2,3,4,5,6].map(function(i){return document.getElementById('ba'+i);});
+  var animTimers=[];
+
+  function floatBalloon(el,i){
+    var area=document.getElementById('balArea');
+    var areaW=area.offsetWidth||600;
+    function move(){
+      var newL=Math.max(0,Math.min(areaW-60,Math.random()*areaW));
+      var newB=20+Math.random()*120;
+      el.style.transition='left 8s ease-in-out, bottom 8s ease-in-out';
+      el.style.left=newL+'px';
+      el.style.bottom=newB+'px';
+      var t=setTimeout(move,8000);
+      animTimers.push(t);
+    }
+    var t=setTimeout(move,i*400);
+    animTimers.push(t);
+  }
+
+  document.getElementById('btn3').onclick=function(){
+    hide('btn3');
+    balEls.forEach(function(el,i){
+      var area=document.getElementById('balArea');
+      var areaW=area.offsetWidth||600;
+      var spacing=areaW/(balEls.length+1);
+      el.style.transition='bottom 1.8s ease-out';
+      el.style.bottom='20px';
+      el.style.left=(spacing*(i+1)-30)+'px';
+    });
+    setTimeout(function(){
+      balEls.forEach(function(el,i){floatBalloon(el,i);});
+      show('btn4');
+    },2200);
+  };
+
+  document.getElementById('btn4').onclick=function(){
+    hide('btn4');
+    var cake=document.getElementById('cake');
+    cake.style.display='block';
+    cake.style.opacity='0';
+    cake.style.transition='opacity 1s';
+    setTimeout(function(){cake.style.opacity='1';},30);
+    setTimeout(function(){show('btn5');},1200);
+  };
+
+  document.getElementById('btn5').onclick=function(){
+    hide('btn5');
+    document.getElementById('flame').style.display='block';
+    setTimeout(function(){show('btn6');},800);
+  };
+
+  document.getElementById('btn6').onclick=function(){
+    hide('btn6');
+    animTimers.forEach(function(t){clearTimeout(t);});
+    document.getElementById('balArea').style.display='none';
+    var wr=document.getElementById('wishRow');
+    wr.style.display='flex';
+    setTimeout(function(){show('btn7');},600);
+  };
+
+  var msgs=12;
+  document.getElementById('btn7').onclick=function(){
+    hide('btn7');
+    document.getElementById('cake').style.display='none';
+    var ms=document.getElementById('msgSec');
+    ms.style.display='block';
+    for(var i=0;i<msgs;i++){
+      (function(idx){
+        setTimeout(function(){
+          var el=document.getElementById('m'+idx);
+          if(el) el.style.display='block';
+        },idx*1400);
+      })(i);
+    }
+  };
+})();
+</script>
